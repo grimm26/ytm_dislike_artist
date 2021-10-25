@@ -26,20 +26,22 @@ def dislike_album_songs(client, albums, dry_run):
 
 def dislike_all_songs(client, artist, dry_run=False):
     """Lookup all albums and singles by this artist and dislike them"""
-    if artist['albums']['browseId'] is None:
-        print('Returned %d albums.' % len(artist['albums']['results']))
-        albums = artist['albums']['results']
-    else:
-        albums = client.get_artist_albums(channelId=artist['channelId'], params=artist['albums']['params'])
-        print('Returned %d albums.' % len(albums))
-    dislike_album_songs(client, albums, dry_run)
-    if artist['singles']['browseId'] is None:
-        print('Returned %d singles.' % len(artist['singles']['results']))
-        singles = artist['singles']['results']
-    else:
-        singles = client.get_artist_albums(channelId=artist['channelId'], params=artist['singles']['params'])
-        print('Returned %d singles.' % len(singles))
-    dislike_album_songs(client, singles, dry_run)
+    if "albums" in artist:
+        if artist['albums']['browseId'] is None:
+            print('Returned %d albums.' % len(artist['albums']['results']))
+            albums = artist['albums']['results']
+        else:
+            albums = client.get_artist_albums(channelId=artist['channelId'], params=artist['albums']['params'])
+            print('Returned %d albums.' % len(albums))
+        dislike_album_songs(client, albums, dry_run)
+    if "singles" in artist:
+        if artist['singles']['browseId'] is None:
+            print('Returned %d singles.' % len(artist['singles']['results']))
+            singles = artist['singles']['results']
+        else:
+            singles = client.get_artist_albums(channelId=artist['channelId'], params=artist['singles']['params'])
+            print('Returned %d singles.' % len(singles))
+        dislike_album_songs(client, singles, dry_run)
 
 def main():
     my_parser = argparse.ArgumentParser(description='Dislike all songs from an Artist on YouTube Music')
