@@ -16,7 +16,7 @@ def dislike_tracks(client, tracks, dry_run):
     for t in tracks:
         print(t['title'])
         client.rate_song(videoId=t['videoId'], rating='DISLIKE') if not dry_run else None
-        sleep(.1)
+        sleep(0.1)
 
 def dislike_album_songs(client, albums, dry_run):
     """Dislike all tracks from all albums in this list"""
