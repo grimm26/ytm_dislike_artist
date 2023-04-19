@@ -1,0 +1,7 @@
+= ytm_dislike_artist
+
+https://music.youtube.com[YouTube Music] does not currently have a way to dislike an artist and/or to keep that artist's music from being suggested or included in random/radio mixes.
+In order to work around this, I wrote a python script that uses https://github.com/sigma67/ytmusicapi[ytmusicapi] to dislike all songs by a given artist.
+This should keep YTM from suggesting them to you and inserting them into auto-generated playlists.
+
+You will need to generate an `oauth.json` file for the script to use as your authentication to YTM. The instructions for generating that are https://ytmusicapi.readthedocs.io/en/stable/setup/oauth.html[here].

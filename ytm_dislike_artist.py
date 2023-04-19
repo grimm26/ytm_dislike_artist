@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# This requires ytmusicapi.  See https://ytmusicapi.readthedocs.io/en/latest/setup.html for setup instructions
+# This requires ytmusicapi.
+# See https://ytmusicapi.readthedocs.io/en/stable/setup/index.html for setup instructions
 
 import argparse
 import os
@@ -72,8 +73,8 @@ def main():
         "--auth",
         action="store",
         type=str,
-        default=os.path.expanduser("~/.config/ytm_headers_auth.json"),
-        help="path to the headers_auth.json file.",
+        default=os.path.expanduser("~/.config/ytm/oauth.json"),
+        help="path to the oauth.json file.",
     )
 
     args = my_parser.parse_args()
@@ -83,7 +84,9 @@ def main():
         ytmusic = YTMusic(args.auth)
     except:
         print(
-            "You need to create a headers_auth.json, see  https://ytmusicapi.readthedocs.io/en/latest/setup.html"
+            "You need to create an oauth.json file.\n"
+            "You can either place it at ~/.config/ytm/oauth.json or pass its path using the --auth flag.\n"
+            "See https://ytmusicapi.readthedocs.io/en/stable/setup/oauth.html"
         )
     else:
         artist = get_artist(ytmusic, artist_name)
